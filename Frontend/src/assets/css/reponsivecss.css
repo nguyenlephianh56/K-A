@@ -1,0 +1,106 @@
+/* --- CSS FIX VỠ GIAO DIỆN CHO MOBILE (2 CỘT) --- */
+@media (max-width: 576px) {
+    
+    /* 1. Thu nhỏ lề trong của Card để có thêm đất diễn cho nội dung */
+    .card-body {
+        padding: 8px 6px !important; /* Trên dưới 8px, Trái phải 6px */
+    }
+
+    /* 2. Giảm cỡ chữ tên sản phẩm và giới hạn 2 dòng */
+    .product-title {
+        font-size: 13px !important;
+        min-height: 34px; /* Đảm bảo chiều cao đồng bộ */
+        margin-bottom: 4px;
+        
+        /* Cắt chữ nếu dài quá 2 dòng */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* 3. Giá tiền nhỏ lại */
+    .current-price {
+        font-size: 14px !important;
+    }
+
+    /* 4. Ẩn bớt thông tin không cần thiết hoặc thu nhỏ tối đa */
+    .original-price {
+        font-size: 10px !important;
+    }
+    .location-info {
+        font-size: 10px !important;
+        white-space: nowrap; /* Không cho xuống dòng địa chỉ */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* 5. Chỉnh nút tim nhỏ lại để không đè vào giá */
+    .btn-add-to-favourite {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 12px !important;
+        padding: 0 !important;
+    }
+
+    /* 6.cho tim lên góc ảnh */
+    
+    /* .card.product-card-custom { position: relative; }
+    .btn-add-to-favourite {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(255,255,255,0.9);
+        border: none;
+        z-index: 10;
+    }
+     */
+}
+
+/* --- FIX FORM TÌM KIẾM TRÊN MOBILE --- */
+@media (max-width: 768px) {
+    
+    /* 1. Giảm kích thước khung bao ngoài */
+    .card-advance-search.p-4 {
+        padding: 15px !important; /* Giảm đệm từ 24px xuống 15px */
+    }
+
+    /* 2. Ép các ô nhập liệu (Input) nhỏ lại */
+    /* Dù HTML là input-group-lg nhưng CSS này sẽ ép nó về size thường */
+    .card-advance-search .input-group-lg > .form-control,
+    .card-advance-search .input-group-lg > .form-select,
+    .card-advance-search .input-group-lg > .input-group-text,
+    .card-advance-search .input-group-lg > .btn {
+        height: 40px !important; /* Chiều cao cố định nhỏ hơn */
+        font-size: 14px !important; /* Chữ nhỏ lại */
+        padding: 5px 10px !important; /* Padding trong input nhỏ lại */
+    }
+
+    /* 3. Thu hẹp khoảng cách giữa các ô (Gutter) */
+    .card-advance-search form.row.g-3 {
+        --bs-gutter-y: 0.5rem !important; /* Khoảng cách dọc giữa các ô giảm đi */
+    }
+
+    /* 4. Chỉnh icon bên trong nhỏ lại */
+    .card-advance-search i.bi {
+        font-size: 14px !important;
+    }
+
+    /* 5. (Tùy chọn) Ẩn bớt các bộ lọc rườm rà, chỉ hiện ô Tìm kiếm và Nút bấm */
+    /* Nếu bạn muốn form siêu gọn thì bỏ comment dòng dưới đây */
+    
+    /* .card-advance-search .col-md-3 {
+        display: none; 
+    } 
+    */
+    
+    /* 6. Xử lý Sticky (Dính) trên mobile */
+    /* Trên mobile màn hình ngắn, nếu dính thanh tìm kiếm to đùng sẽ che hết nội dung */
+    /* Tốt nhất là tắt chế độ dính trên mobile, hoặc cho nó nằm gọn ở trên cùng */
+    .sticky-top {
+        position: relative !important; /* Không dính nữa */
+        top: 0 !important;
+        margin-top: 10px !important;
+        z-index: 1;
+    }
+}

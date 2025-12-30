@@ -1,0 +1,51 @@
+body {
+    background-color: #f5f5f5; 
+}
+
+/* Menu bên trái */
+.account-menu .list-group-item {
+    font-size: 0.95rem;
+    color: #333;
+}
+.account-menu .list-group-item:hover {
+    color: #4A70A9; 
+}
+.account-menu .list-group-item.active {
+    color: #4A70A9 !important;
+}
+
+/* Thẻ chứa nội dung chính */
+.profile-card {
+    background: #fff;
+    min-height: 500px;
+}
+
+/* Tinh chỉnh Form */
+.col-form-label {
+    font-size: 0.95rem;
+    color: rgba(85, 85, 85, 0.8); 
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border-color: #888;
+}
+
+/* Nút Lưu*/
+.btn-save {
+    background-color: #8FABD4 !important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 30px;
+    font-size: 1rem;
+    box-shadow: 0 1px 1px rgba(0,0,0,.09);
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover, 
+.btn-change:hover {
+    background-color: #4A70A9 !important; 
+    color: white;
+}
+

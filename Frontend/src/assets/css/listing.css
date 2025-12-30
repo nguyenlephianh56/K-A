@@ -1,0 +1,77 @@
+body {
+    background-color: #f5f5f5; /* Nền xám nhẹ làm nổi bật thẻ trắng */
+}
+
+/* --- Style cho Thẻ tin đăng --- */
+.room-item-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e0e0e0;
+    overflow: hidden; /* Để ảnh bo góc theo card */
+}
+
+.room-item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    border-color: #0d6efd; /* Viền xanh khi hover */
+}
+
+.room-item-card img {
+    height: 100%;
+    width: 100%;
+    min-height: 200px; /* Chiều cao tối thiểu cho ảnh trên mobile */
+    object-fit: cover;
+}
+
+/* Hiệu ứng tiêu đề */
+.hover-title {
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    
+    /* Giới hạn 2 dòng cho tiêu đề */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hover-title:hover {
+    color: #ee4d2d; /* Màu cam đỏ giống Shopee/Batdongsan */
+}
+
+/* Giới hạn dòng mô tả */
+.description-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Chỉ hiện 2 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Icon trái tim */
+.heart-icon {
+    cursor: pointer;
+    text-shadow: 0 0 3px rgba(0,0,0,0.5); /* Tạo bóng để nhìn rõ trên nền ảnh sáng */
+}
+.heart-icon:hover {
+    color: #ff424f;
+}
+
+/* --- Style cho Bộ lọc --- */
+.form-check-input {
+    cursor: pointer;
+}
+.form-check-input:checked {
+    background-color: #ee4d2d;
+    border-color: #ee4d2d;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .room-item-card .row > div {
+        width: 100%; /* Trên mobile thì ảnh nằm trên, chữ nằm dưới */
+    }
+    .room-item-card img {
+        height: 200px;
+    }
+}

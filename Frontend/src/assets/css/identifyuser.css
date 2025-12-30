@@ -1,0 +1,134 @@
+  body {
+            background-color: #fff; /* Nền trắng sạch như ảnh mẫu */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 70px; /* Điều chỉnh kích thước logo nếu cần */
+            margin-left: 41%;
+        }
+
+        .role-selection-container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #0d6efd; /* Màu xanh giống ảnh mẫu */
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Style cho 2 cái ô chọn vai trò */
+        .role-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng khi rê chuột vào */
+        .role-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #0d6efd;
+        }
+
+        .role-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 40px;
+        }
+
+        /* Màu riêng cho Sinh viên */
+        .student-card .role-icon {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+        }
+        
+        /* Màu riêng cho Chủ trọ */
+        .landlord-card .role-icon {
+            background-color: #fff3cd;
+            color: #ffc107;
+        }
+
+        .role-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .role-desc {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Style cho khung thông báo bên dưới */
+        .info-box {
+            background-color: #fff3cd; 
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 40px;
+            color: #333;
+            border: 1px solid #ffeeba;
+        }
+        
+        .info-title {
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+     
+        /*Loại bỏ gạch chân cho tất cả nội dung bên trong thẻ <a> */
+.col-md-5 > a {
+    text-decoration: none;
+}
+
+/* Đảm bảo các thẻ con kế thừa màu chữ chính xác */
+.role-card h5, 
+.role-card p,
+.role-card a {
+    
+    color: black; 
+   
+}
+
+/* Đảm bảo nút bấm vẫn hiển thị đúng màu chữ */
+.role-card .btn {
+    /* Các nút bấm cần giữ màu chữ theo style Bootstrap */
+    color: var(--bs-btn-color); 
+}
+        
+
+        /* Responsive: Trên điện thoại thì cách xa nhau ra xíu */
+        @media (max-width: 768px) {
+            .role-card {
+                margin-bottom: 20px;
+            }
+        }

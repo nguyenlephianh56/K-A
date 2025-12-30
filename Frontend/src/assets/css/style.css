@@ -1,0 +1,402 @@
+
+/* font Be Vietnam Pro */
+body {
+    font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+
+/* Làm các tiêu đề đẹp hơn */
+h1, h2, h3, h4, h5, h6, .navbar-brand, .btn {
+    letter-spacing: -0.5px; /* Thu hẹp khoảng cách chữ */
+}
+
+.heart-icon {
+    text-decoration: none; /* Bỏ gạch chân */
+    display: inline-block; /* Giúp icon không bị méo */
+    cursor: pointer;       /* Con trỏ chuột hình bàn tay */
+    transition: transform 0.2s; /* Hiệu ứng nhún nhảy */
+}
+
+/* 2. Định dạng thẻ i (icon) bên trong */
+/* Mặc định là màu xám (hoặc màu bạn muốn) */
+.heart-icon i {
+    color: #6c757d; 
+    transition: color 0.3s ease; /* Chuyển màu mượt */
+}
+
+/* 3. Khi di chuột vào thẻ a -> Đổi màu thẻ i */
+.heart-icon:hover i {
+    color: #dc3545 !important; /* Màu đỏ */
+}
+
+/* 4. Khi di chuột vào -> Phóng to nhẹ */
+.heart-icon:hover {
+    transform: scale(1.1);
+}
+
+.chu_tieu_de {
+    font-weight: bold;
+    color: #4A70A9;
+    
+}
+.btn-custom {
+    background-color: #8FABD4;
+    color: #000000;
+    border-color: black;
+    
+}  
+
+.btn-custom:hover {
+    background-color:#4A70A9;
+    color: #FFFFFF;
+    border-color: black;
+}
+
+.hero-banner img {
+    width: 100%; /* Buộc hình ảnh kéo giãn toàn chiều rộng */
+    height: auto;    
+
+}
+
+
+
+.hero-banner2 {
+    /* Biến div thành flex container */
+    display: flex;
+    /* Căn giữa theo chiều ngang */
+    justify-content: center;
+    /* Căn giữa theo chiều dọc (nếu div có chiều cao cố định) */
+    align-items: center;
+    transform: scale(0.85);
+    margin: 20px 0;
+}
+
+/* Tác động vào tấm ảnh bên trong */
+.hero-banner2 img {
+   max-width: 100%; /* Bạn có thể thay đổi số này tuỳ ý */
+    height: auto;
+    border-radius: 10px;
+}
+
+.carousel-inner .carousel-item img  {
+    border-radius: 10%;
+    height:auto; 
+
+}
+
+/* product card */
+/* Thiết lập chung cho Card */
+.product-card-custom {
+    max-width: 250px; /* Điều chỉnh chiều rộng tối đa của card */
+    border-radius: 12px; /* Bo tròn góc card */
+    border: 1px solid #eee; /* Đường viền nhẹ */
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-color: black;
+}
+
+.product-card-custom:hover {
+    transform: translateY(-3px); /* Hiệu ứng nâng card khi hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Khu vực Hình ảnh (Để căn giữa ảnh) */
+.card-img-top-container {
+    padding: 15px; /* Khoảng đệm xung quanh ảnh */
+    text-align: center;
+}
+
+.card-img-top {
+    /* Đảm bảo ảnh hiển thị đẹp */
+    max-height: 200px; /* Chiều cao tối đa cho ảnh */
+    width: auto; /* Giữ tỷ lệ ảnh */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Tên Sản phẩm */
+.product-title {
+    font-size: 1rem; /* Kích thước chữ nhỏ hơn */
+    font-weight: 600; /* In đậm vừa phải */
+    color: #333;
+    min-height: 40px; /* Đảm bảo chiều cao thống nhất cho tên sản phẩm */
+    overflow: hidden;
+    text-align: center; /* Căn giữa tên sản phẩm */
+}
+
+/* Giá Hiện tại */
+.current-price {
+    color: #f00; /* Màu đỏ nổi bật cho giá */
+    font-size: 1.15rem; 
+    font-weight: 700;
+}
+
+
+
+/* Nút Thêm vào yeu thich */
+.btn-add-to-favourite {
+    background-color: transparent !important; /* Xóa nền */
+    border: 1px solid black; 
+    color: red !important; /* Màu icon/nội dung bên trong */
+    padding: 8px 10px;
+    border-radius: 8px; /* Bo tròn góc nút */
+    line-height: 1;
+}
+
+.btn-add-to-favourite:hover {
+    background-color: #EFECE3 !important; /* Hiệu ứng hover */
+    color: black!important;
+}
+
+/* detail của cái link a trong product card */
+.card-body .details {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+/* slide hình ảnh cho phường, ở cuối trang web */
+/* thanh lướt các phường đà nẵng */
+/* Kích thước ảnh nhỏ */
+.ward-img-container {
+    width: 100% ;
+    height: 140px; 
+    overflow: hidden;
+    position: relative;
+}
+
+.ward-img-container img {
+    width: 100%; 
+    height: 100%!important;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng Hover */
+.ward-card:hover .ward-img-container img {
+    transform: scale(1.1);
+}
+.city-card {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+/* Thiết lập chuyển động mượt cho text (rất quan trọng) */
+.ward-card .ward-info h6 {
+    transition: color 0.3s ease; /* Áp dụng chuyển động mượt cho màu chữ */
+    color: #333; /* Màu mặc định (ví dụ: đen xám) */
+}
+
+/*  Hiệu ứng khi rê chuột vào TOÀN BỘ CARD */
+.ward-card:hover .ward-info h6 {
+    /* Đổi màu chữ sang màu xanh primary (Ví dụ: màu Bootstrap primary) */
+    color: #0d6efd !important; 
+    
+    /* Tùy chọn: Có thể in đậm thêm */
+    /* font-weight: bold; */
+}
+
+/* Tinh chỉnh nút mũi tên (Optional) */
+/* Làm nút mũi tên đậm hơn và có nền mờ để dễ nhìn */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.5); /* Nền đen mờ */
+    border-radius: 50%; /* Hình tròn */
+    padding: 10px;
+    background-size: 50% 50%; /* Chỉnh icon nhỏ lại vào giữa */
+}
+
+
+/* thiết lập cái gạch chân dưới ul trên navbar */
+
+/* Thiết lập vị trí cho thẻ cha */
+.navbar-nav .nav-item .nav-link {
+    position: relative; /* Để thanh gạch chân biết chỗ mà bám vào */
+    color: #333; /* Màu chữ mặc định */
+    text-decoration: none; /* Tắt gạch chân mặc định xấu xí */
+    padding-bottom: 5px; /* Khoảng cách giữa chữ và gạch chân */
+}
+
+/*Tạo thanh gạch chân (Ban đầu ẩn) */
+.navbar-nav .nav-item .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Nằm dưới cùng */
+    left: 0; /* Bắt đầu từ bên trái */
+    width: 0%; /* Ban đầu độ rộng là 0 (không thấy gì) */
+    height: 3px; /* Độ dày của thanh gạch chân */
+    background-color: #8FABD4; /* Màu xanh bạn thích */
+    
+    /*  Tạo chuyển động mượt mà */
+    transition: width 0.3s ease-out; 
+}
+
+/* Khi Hover HOẶC khi có class .active: Kéo dài thanh gạch chân ra */
+.navbar-nav .nav-item .nav-link:hover::after,
+.navbar-nav .nav-item .nav-link.active::after { 
+    width: 100%; 
+}
+
+/* Đổi màu chữ khi hover HOẶC khi có class .active */
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-item .nav-link.active { /* <-- Thêm dòng này */
+    color: #4A70A9 !important; 
+    font-weight: bold; /* Thêm in đậm cho nổi bật hơn*/
+}
+
+
+
+/* hiệu ứng hover vào cacsc banner */
+/* Class cha (Banner/Ảnh) */
+.shine-banner {
+    position: relative; /* Để vệt sáng căn theo khung này */
+    overflow: hidden;   /* Ẩn phần ánh sáng khi nó chạy ra ngoài khung */
+    display: block;     /* Đảm bảo khối hiển thị đúng */
+    cursor: pointer;    /* Con trỏ chuột thành hình bàn tay */
+}
+
+/* Vệt sáng (Lớp giả ::before) */
+.shine-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Ban đầu nằm ẩn hoàn toàn bên trái */
+    width: 50%;  /* Độ rộng của vệt sáng */
+    height: 100%;
+    
+    /* Tạo dải màu gradient: Trong suốt -> Trắng mờ -> Trong suốt */
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    
+    /* Nghiêng vệt sáng 25 độ để trông tự nhiên hơn */
+    transform: skewX(-25deg);
+    
+    /* Hiệu ứng chuyển động mượt mà */
+    transition: none; 
+    z-index: 2; /* Đè lên trên ảnh */
+}
+
+/* Khi Hover vào */
+.shine-banner:hover::before {
+    left: 150%; /* Chạy vút sang bên phải */
+    transition: all 1.25s ease; /* Tốc độ chạy là 0.75 giây */
+}
+
+
+/* lam cho thanh tim kiem noi len tren banner (layer) (cho banner nằm sau thanh tìm kiếm) + hieu ung glass */
+
+/* Tinh chỉnh lại Banner chính thành layer phía sau */
+.hero-banner {
+    position: relative; /* Để xác định vị trí gốc */
+    z-index: 1; /* Nằm dưới cùng */
+}
+
+/* Class tạo hiệu ứng kính mờ (Glassmorphism) */
+.glass-search-card {
+    /* Đẩy khung search lên trên 80px để đè vào ảnh */
+    margin-top: -80px; 
+    
+    /* Màu nền trắng + trong suốt (0.75 là độ mờ) */
+    background: rgba(255, 255, 255, 0.75); 
+    
+    /* Hiệu ứng làm mờ hậu cảnh đằng sau tấm kính */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); /* Cho trình duyệt Safari */
+    
+    /* Viền mỏng để tạo độ nổi khối */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    /* Đổ bóng nhẹ tạo chiều sâu */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    
+    /* Đảm bảo khung search nằm ĐÈ LÊN ảnh banner */
+    position: relative;
+    z-index: 10; 
+    
+    /* Bo góc mềm mại */
+    border-radius: 20px;
+}
+
+/* Responsive: Trên điện thoại thì không đè lên ảnh nữa cho dễ nhìn */
+@media (max-width: 768px) {
+    .glass-search-card {
+        margin-top: 20px; /* Trả lại khoảng cách bình thường */
+        background: #ffffff; /* Về lại màu trắng đặc */
+    }
+}
+
+/* --- NAVBAR GLASS EFFECT --- */
+.glass-nav {
+    /* Màu nền gốc EFECE3 nhưng độ trong suốt 0.85 (85%) */
+    background: rgba(239, 236, 227, 0.85) !important;
+    
+    /* Hiệu ứng làm mờ nội dung bên dưới khi cuộn qua */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Cho Safari */
+    
+    /* Đường viền mỏng phía dưới tạo cảm giác tách biệt nhẹ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    
+    /* Đổ bóng nhẹ để nổi lên khỏi nội dung */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    
+    /* Hiệu ứng chuyển động mượt mà */
+    transition: all 0.3s ease;
+}
+
+/* Tùy chọn: Khi hover vào navbar thì nó đậm lên một chút cho dễ đọc */
+.glass-nav:hover {
+    background: rgba(239, 236, 227, 0.95) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- BUTTON BACK TO TOP (GLASS STYLE) --- */
+#btn-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    
+    /* Kích thước nút hình tròn */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+    /* Hiệu ứng kính mờ màu xanh */
+    background: rgba(74, 112, 169, 0.65); /* Màu xanh trong suốt */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    
+    /* Màu mũi tên */
+    color: white;
+    font-size: 1.2rem;
+    
+    /* Bóng đổ nhẹ */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+    /* Ẩn đi mặc định (để JS xử lý hiện ra sau) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px); /* Đẩy xuống dưới 1 chút */
+    transition: all 0.4s ease;
+    
+    z-index: 1000; /* Nằm trên mọi thứ */
+}
+
+/* Class để kích hoạt hiện nút */
+#btn-back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Trượt lên vị trí cũ */
+}
+
+/* Hiệu ứng khi rê chuột vào */
+#btn-back-to-top:hover {
+    background: rgba(74, 112, 169, 0.95); /* Đậm màu hơn */
+    box-shadow: 0 6px 20px rgba(74, 112, 169, 0.4); /* Bóng xanh tỏa ra (Glow effect) */
+    transform: translateY(-5px); /* Bay nhẹ lên */
+}

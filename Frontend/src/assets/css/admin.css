@@ -1,0 +1,29 @@
+/* Frontend/src/assets/css/admin.css */
+
+/* Màu nền và viền cho menu đang chọn (Active) */
+.admin-sidebar .list-group-item.active { 
+    background-color: #8FABD4; 
+    border-color: #8FABD4; 
+    color: #fff; /* Thêm màu chữ trắng cho dễ đọc */
+}
+
+/* Header của các thẻ Card trong Admin */
+.card-header-admin { 
+    background-color: #f8f9fa; 
+    border-bottom: 2px solid #8FABD4; 
+    font-weight: bold; 
+}
+
+/* Ảnh đại diện nhỏ trong bảng danh sách user */
+.avatar-small { 
+    width: 40px; 
+    height: 40px; 
+    object-fit: cover; 
+}
+
+/* Ảnh thumbnail nhỏ trong bảng tin đăng */
+.img-thumbnail-admin { 
+    width: 60px; 
+    height: 40px; 
+    object-fit: cover; 
+}

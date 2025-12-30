@@ -1,0 +1,85 @@
+body { 
+    
+ 
+    background-image: url('../images/backgroundlogin.jpg'); 
+   
+    
+    background-size:cover !important; 
+    
+    /* Căn ảnh vào chính giữa màn hình */
+    background-position: center center !important; 
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #f0f2f5; /* Thêm màu nền để lấp đầy khoảng trống */
+     background-color: black;
+    /* ... các thuộc tính layout khác ... */
+
+
+    /* LAYOUT CĂN GIỮA */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+      .login-card {
+    /* 1. Màu nền trắng nhưng chỉnh độ trong suốt (Alpha = 0.1 đến 0.2) */
+    background: rgba(255, 255, 255, 0.15); 
+
+    /* 2. Hiệu ứng làm mờ hậu cảnh (Đây là chìa khóa tạo hiệu ứng kính) */
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px); /* Hỗ trợ trình duyệt Safari/Mac */
+
+    /* 3. Viền mỏng sáng màu để tạo cảm giác cạnh kính */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    /* 4. Đổ bóng nhẹ để tách biệt khỏi nền */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Giữ nguyên các thuộc tính cũ */
+    border-radius: 15px; /* Bo góc tròn hơn chút cho đẹp */
+    width: 100%;
+    max-width: 400px;
+}
+
+        /* Chỉnh màu chữ tiêu đề và nhãn form đậm hơn hoặc sáng hẳn lên */
+.login-header h3, 
+.login-header p,
+.form-check-label,
+a {
+    /* Tùy vào nền của bạn tối hay sáng mà chọn màu chữ. 
+       Nếu nền tối -> chọn màu #fff (Trắng). 
+       Nếu nền sáng -> chọn màu #000 (Đen) hoặc #333. */
+    color: #fff; 
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Đổ bóng chữ nhẹ để dễ đọc */
+}
+
+/* Làm các ô Input cũng trong suốt nhẹ (hoặc trắng hẳn) */
+.form-control {
+    background: rgba(255, 255, 255, 0.9); /* Trắng đục 90% */
+    border: none;
+}
+
+.form-control:focus {
+    background: #fff; /* Khi bấm vào thì trắng hoàn toàn */
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
+}
+
+        .login-header h3 {
+            font-weight: 700;
+            color: white; 
+        }
+        
+        .btn-custom {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            font-weight: bold;
+            padding: 10px;
+        }
+        
+        .btn-custom:hover {
+            background-color: #0b5ed7;
+            border-color: #0b5ed7;
+        }
+
