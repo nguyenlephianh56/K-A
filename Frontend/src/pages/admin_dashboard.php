@@ -3,13 +3,13 @@ session_start();
 // Đảm bảo đường dẫn này đúng
 require_once '../../../Backend/config/db_connect.php';
 
-//CHẶN TRUY CẬP: Chỉ Admin mới được vào
+// CHẶN TRUY CẬP: Chỉ Admin mới được vào
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: ../index.php");
     exit();
 }
 
-//LẤY TAB HIỆN TẠI
+// LẤY TAB HIỆN TẠI
 $tab = isset($_GET['tab']) ? $_GET['tab'] : 'dashboard';
 
 // ============================================================
@@ -21,22 +21,32 @@ function get_image_path($path_from_db) {
     return '../uploads/' . basename($path_from_db);
 }
 
+// ============================================================
 // THỐNG KÊ SỐ LIỆU
+// ============================================================
+// 1. Tổng thành viên
 $sql_users = "SELECT COUNT(*) as total FROM users WHERE role != 'admin'"; 
 $res_users = $conn->query($sql_users);
 $total_users = $res_users->fetch_assoc()['total'];
 
+// 2. Tổng bài đăng
 $sql_posts = "SELECT COUNT(*) as total FROM rooms";
 $res_posts = $conn->query($sql_posts);
 $total_posts = $res_posts->fetch_assoc()['total'];
 
-$total_reports = 0;
-$check_report_table = $conn->query("SHOW TABLES LIKE 'reports'");
-if($check_report_table && $check_report_table->num_rows > 0) {
-    $sql_reports = "SELECT COUNT(DISTINCT room_id) as total FROM reports WHERE status = 'pending'";
-    $res_reports = $conn->query($sql_reports);
-    if ($res_reports) $total_reports = $res_reports->fetch_assoc()['total'];
-}
+// 3. Bài đăng mới trong 7 ngày qua
+$sql_new_posts = "SELECT COUNT(*) as total FROM rooms WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+$res_new = $conn->query($sql_new_posts);
+$new_posts_count = ($res_new) ? $res_new->fetch_assoc()['total'] : 0;
+
+// 4. [QUAN TRỌNG - ĐÃ SỬA THEO CSDL CỦA BẠN]
+// Thay r.user_id thành r.owner_id
+$sql_recent_list = "SELECT r.*, COALESCE(u.full_name, 'Người dùng ẩn') as full_name 
+                    FROM rooms r 
+                    LEFT JOIN users u ON r.owner_id = u.user_id 
+                    ORDER BY r.room_id DESC 
+                    LIMIT 5";
+$res_recent_list = $conn->query($sql_recent_list);
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +60,6 @@ if($check_report_table && $check_report_table->num_rows > 0) {
     <link rel="icon" type="image/png" href="../../src/assets/images/favicon.png">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-
 </head>
 <body class="bg-light">
 
@@ -105,38 +114,141 @@ if($check_report_table && $check_report_table->num_rows > 0) {
 
             <div class="col-lg-9 col-md-8">
                 
-                <?php if ($tab == 'dashboard'): ?>
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-4">
-                            <div class="card text-white bg-primary shadow-sm h-100 border-0">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <div><h6 class="card-title mb-0">Thành viên</h6><h2 class="my-2 fw-bold"><?php echo number_format($total_users); ?></h2></div>
-                                    <i class="bi bi-people fs-1 opacity-50"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-white bg-success shadow-sm h-100 border-0">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <div><h6 class="card-title mb-0">Tổng bài đăng</h6><h2 class="my-2 fw-bold"><?php echo number_format($total_posts); ?></h2></div>
-                                    <i class="bi bi-collection-fill fs-1 opacity-50"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-white bg-danger shadow-sm h-100 border-0">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <div><h6 class="card-title mb-0">Tin bị báo cáo</h6><h2 class="my-2 fw-bold"><?php echo number_format($total_reports); ?></h2></div>
-                                    <i class="bi bi-exclamation-triangle-fill fs-1 opacity-50"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow-sm border-0">
-                        <div class="card-header card-header-admin bg-white"><i class="bi bi-activity me-2"></i>Hoạt động</div>
-                        <div class="card-body"><p class="text-muted text-center py-5">Chào mừng quay trở lại, Admin!</p></div>
-                    </div>
-                <?php endif; ?>
+              <?php if ($tab == 'dashboard'): ?>
+    
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow-sm h-100 border-0">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h6 class="card-title mb-0">Thành viên</h6><h2 class="my-2 fw-bold"><?php echo number_format($total_users); ?></h2></div>
+                    <i class="bi bi-people fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow-sm h-100 border-0">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h6 class="card-title mb-0">Tổng bài đăng</h6><h2 class="my-2 fw-bold"><?php echo number_format($total_posts); ?></h2></div>
+                    <i class="bi bi-collection-fill fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger shadow-sm h-100 border-0">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div><h6 class="card-title mb-0">Bài đăng mới (7 ngày)</h6><h2 class="my-2 fw-bold"><?php echo number_format($new_posts_count); ?></h2></div>
+                    <i class="bi bi-lightning-charge-fill fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header card-header-admin bg-white d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-primary"><i class="bi bi-stars me-2 text-warning"></i>Các bài vừa đăng mới nhất</span>
+            <a href="?tab=posts" class="btn btn-sm btn-outline-primary">Xem tất cả</a>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-3">Tin đăng</th>
+                            <th>Giá phòng</th>
+                            <th>Người đăng</th>
+                            <th>Thời gian</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        // Câu lệnh SQL (Giữ nguyên logic owner_id bạn đã sửa đúng)
+                        $sql_recent_list = "SELECT r.*, 
+                                            COALESCE(u.full_name, 'Người dùng ẩn') as owner_name,
+                                            (SELECT photo_url FROM room_photos rp WHERE rp.room_id = r.room_id LIMIT 1) as first_image
+                                            FROM rooms r 
+                                            LEFT JOIN users u ON r.owner_id = u.user_id 
+                                            ORDER BY r.room_id DESC 
+                                            LIMIT 5";
+
+                        $res_recent_list = $conn->query($sql_recent_list);
+
+                        if ($res_recent_list && $res_recent_list->num_rows > 0) {
+                            while($recent = $res_recent_list->fetch_assoc()) {
+                                // 1. Xử lý Ảnh
+                                $img_src = 'https://via.placeholder.com/60?text=No+Img';
+                                if (!empty($recent['first_image'])) {
+                                    $img_src = (strpos($recent['first_image'], 'http') === 0) ? $recent['first_image'] : '../uploads/' . basename($recent['first_image']);
+                                }
+
+                                // 2. Xử lý Trạng thái
+                                $status_badge = match ($recent['status']) {
+                                    'available' => '<span class="badge bg-success">Đang hiện</span>',
+                                    'occupied' => '<span class="badge bg-secondary">Đã thuê</span>',
+                                    'pending' => '<span class="badge bg-warning text-dark">Chờ duyệt</span>',
+                                    default => '<span class="badge bg-light text-dark border">Ẩn</span>',
+                                };
+
+                                // ==========================================================
+                                // 3. XỬ LÝ THỜI GIAN (TIME AGO) - PHẦN BẠN CẦN
+                                // ==========================================================
+                                $time_display = "Vừa xong"; // Mặc định
+                                if (!empty($recent['created_at'])) {
+                                    $timestamp = strtotime($recent['created_at']);
+                                    $distance = time() - $timestamp; // Khoảng cách giây
+
+                                    if ($distance < 60) {
+                                        $time_display = '<span class="text-success fw-bold">Vừa xong</span>';
+                                    } elseif ($distance < 3600) {
+                                        $minutes = floor($distance / 60);
+                                        $time_display = "<span class='text-primary'>{$minutes} phút trước</span>";
+                                    } elseif ($distance < 86400) {
+                                        $hours = floor($distance / 3600);
+                                        $time_display = "{$hours} giờ trước";
+                                    } elseif ($distance < 259200) { // Dưới 3 ngày
+                                        $days = floor($distance / 86400);
+                                        $time_display = "{$days} ngày trước";
+                                    } else {
+                                        // Lâu quá thì hiện ngày tháng
+                                        $time_display = date('d/m/Y H:i', $timestamp);
+                                    }
+                                }
+                                // ==========================================================
+                        ?>
+                            <tr>
+                                <td class="ps-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="<?php echo $img_src; ?>" class="rounded me-3 border" width="50" height="50" style="object-fit: cover;">
+                                        <div>
+                                            <div class="fw-bold text-truncate" style="max-width: 200px;" title="<?php echo htmlspecialchars($recent['title']); ?>">
+                                                <?php echo htmlspecialchars($recent['title']); ?>
+                                            </div>
+                                            <small class="text-muted"><i class="bi bi-geo-alt-fill me-1"></i><?php echo htmlspecialchars($recent['city']); ?></small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fw-bold text-danger"><?php echo number_format($recent['price']); ?> đ</td>
+                                <td>
+                                    <i class="bi bi-person-circle me-1 text-muted"></i>
+                                    <?php echo htmlspecialchars($recent['owner_name']); ?>
+                                </td>
+                                
+                                <td class="small"><?php echo $time_display; ?></td>
+                                
+                                <td><?php echo $status_badge; ?></td>
+                            </tr>
+                        <?php 
+                            }
+                        } else {
+                            echo '<tr><td colspan="5" class="text-center py-4 text-muted">Chưa có bài đăng nào.</td></tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
                 <?php if ($tab == 'users'): ?>
                     <div class="card shadow-sm border-0">
@@ -179,7 +291,6 @@ if($check_report_table && $check_report_table->num_rows > 0) {
                                                 <td><?php echo htmlspecialchars($row['email']); ?><br><small class="text-muted"><?php echo htmlspecialchars($row['phone'] ?? ''); ?></small></td>
                                                 <td><span class="badge <?php echo $role_badge; ?>"><?php echo $role_name; ?></span></td>
                                                 <td>
-                                                    
                                                 <button type="button" class="btn btn-sm btn-outline-primary edit-user-btn"
                                                     data-bs-toggle="modal" 
                                                     data-bs-target="#editUserModal"
@@ -216,7 +327,6 @@ if($check_report_table && $check_report_table->num_rows > 0) {
                                     <thead class="bg-light">
                                         <tr><th class="ps-3">Ảnh</th><th style="width: 30%">Tiêu đề</th><th>Giá / Diện tích</th><th>Người đăng</th><th>Trạng thái</th><th>Hành động</th></tr>
                                     </thead>
-                                    
                                     <tbody id="post_data_container">
                                         <?php 
                                             $ajax_file_path = __DIR__ . '/../../../Backend/functions/get_rooms_list.php';
@@ -227,7 +337,6 @@ if($check_report_table && $check_report_table->num_rows > 0) {
                                             }
                                         ?>
                                     </tbody>
-                                    
                                 </table>
                             </div>
                         </div>
@@ -321,7 +430,6 @@ if($check_report_table && $check_report_table->num_rows > 0) {
                                 <div class="card-body p-0">
                                     <ul class="list-group list-group-flush">
                                         <?php
-                                        // Kiểm tra bảng notifications có tồn tại không trước khi query
                                         $check_noti = $conn->query("SHOW TABLES LIKE 'notifications'");
                                         if($check_noti && $check_noti->num_rows > 0) {
                                             $sql_noti = "SELECT * FROM notifications ORDER BY created_at DESC";
@@ -361,8 +469,7 @@ if($check_report_table && $check_report_table->num_rows > 0) {
         </div>
     </div>
 
-    <!-- model chỉnh sửa user -->
-   <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-black" style="background-color: #8FABD4;">
@@ -402,7 +509,6 @@ if($check_report_table && $check_report_table->num_rows > 0) {
   </div>
 </div>
 
-    <!-- model chỉnh sửa bài đăng -->
     <div class="modal fade" id="editPostModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -452,23 +558,20 @@ if($check_report_table && $check_report_table->num_rows > 0) {
         if (editUserModal) {
             editUserModal.addEventListener('show.bs.modal', function (event) {
                 var button = event.relatedTarget;
-                
-                // Lấy dữ liệu cũ
                 var id = button.getAttribute('data-id');
                 var name = button.getAttribute('data-name');
                 var email = button.getAttribute('data-email');
                 var phone = button.getAttribute('data-phone');
                 var role = button.getAttribute('data-role');
-                var username = button.getAttribute('data-username'); // TRƯỜNG MỚI: Lấy username
+                var username = button.getAttribute('data-username');
 
-                // Gán vào form
                 document.getElementById('edit_user_id').value = id;
                 document.getElementById('edit_full_name').value = name;
                 document.getElementById('edit_email').value = email;
                 document.getElementById('edit_phone').value = phone;
                 document.getElementById('edit_role').value = role;
-                document.getElementById('edit_username').value = username; // TRƯỜNG MỚI: Gán username
-                document.getElementById('edit_password').value = ''; // Luôn xóa trường password khi mở
+                document.getElementById('edit_username').value = username;
+                document.getElementById('edit_password').value = ''; 
             });
         }
 
@@ -502,7 +605,7 @@ if($check_report_table && $check_report_table->num_rows > 0) {
                     .catch(error => console.error('Lỗi cập nhật:', error));
             }
         }
-        setInterval(fetchRealtimeData, 2000); // 2 giây cập nhật 1 lần
+        setInterval(fetchRealtimeData, 2000); 
     </script>
 </body>
 </html>

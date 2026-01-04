@@ -31,10 +31,9 @@
                         <i class="bi bi-geo-alt-fill"></i> 
                         <?php echo $row['ward']; ?>, <?php echo $row['city']; ?>
                     </p>
-
-                    <a href="#" class="details badge bg-light text-dark border mt-1 text-decoration-none">
+                    <div class="details badge bg-light text-dark border mt-1 text-decoration-none">
                         <?php echo $row['type_name']; ?>
-                    </a> 
+                    </div>
                 </div>
 
                <?php
