@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
                 <p class="text-muted small">Chào mừng trở lại!</p>
             </div>
 
-            <form action="xuly_login.php" method="POST">
+            <form action="../../../Backend/functions/process_login.php" method="POST">
                 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="tenDangNhap" name="username" placeholder="Tên đăng nhập hoặc Email" required>
@@ -40,7 +40,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
                             Ghi nhớ đăng nhập
                         </label>
                     </div>
-                    <a href="#" class="small text-decoration-none">Quên mật khẩu?</a>
+                    <a href="forgotpassword.php" class="small text-decoration-none">Quên mật khẩu?</a>
                 </div>
 
                 <button type="submit" class="btn btn-custom btn-primary w-100 mb-3">

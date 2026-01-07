@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once '../../../Backend/config/db_connect.php'; 
-
+require_once '../config/db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Nhận dữ liệu
@@ -30,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'message' => 'Tên đăng nhập hoặc Email đã tồn tại trong hệ thống.'
             ];
             // Quay lại trang đăng ký kèm role
-            echo "<script>window.location.href='register.php?role=$role';</script>";
+            echo "<script>window.location.href='../../Frontend/src/pages/register.php?role=$role';</script>";
             exit();
         }
         $stmt_check->close();
@@ -57,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             // Chuyển hướng nhưng thực chất Modal trong register.php sẽ bắt sự kiện này 
             // và chuyển người dùng sang login.php khi bấm OK
-            echo "<script>window.location.href='register.php?role=$role';</script>";
+            echo "<script>window.location.href='../../Frontend/src/pages/register.php?role=$role';</script>";
             exit();
         } else {
             // Lỗi Insert
@@ -66,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'title' => 'Lỗi hệ thống',
                 'message' => 'Không thể tạo tài khoản: ' . $conn->error
             ];
-             echo "<script>window.location.href='register.php?role=$role';</script>";
+            echo "<script>window.location.href='../../Frontend/src/pages/register.php?role=$role';</script>";
              exit();
         }
        

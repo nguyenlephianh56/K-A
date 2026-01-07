@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../../Backend/config/db_connect.php'; 
+require_once '../config/db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -68,9 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Đóng kết nối CSDL
     $conn->close();
 
-    // --- CHUYỂN HƯỚNG ---
     // Dù thành công hay thất bại đều quay về login.php để hiện Modal
-    echo '<script>window.location.href="login.php";</script>';
+    echo '<script>window.location.href="../../Frontend/src/pages/login.php";</script>';
     exit();
 }
 ?>

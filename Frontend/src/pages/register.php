@@ -28,7 +28,7 @@ $role_title = ($role == 'owner') ? 'CHỦ TRỌ' : 'SINH VIÊN';
                 <p class="text-black ">Xin chào những vị khách mới!</p>
             </div>
 
-            <form action="xuly_dangky.php" method="POST">
+            <form action="../../../Backend/functions/process_register.php" method="POST">
                 
                 <input type="hidden" name="role" value="<?php echo $role; ?>">
 
