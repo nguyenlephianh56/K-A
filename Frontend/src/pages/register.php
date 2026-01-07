@@ -1,11 +1,8 @@
 <?php
-// KHỞI ĐỘNG SESSION 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
 // LẤY ROLE TỪ URL (Mặc định là student)
 $role = isset($_GET['role']) ? $_GET['role'] : 'student';
-
-// XÁC ĐỊNH TIÊU ĐỀ
 $role_title = ($role == 'owner') ? 'CHỦ TRỌ' : 'SINH VIÊN';
 ?>
 

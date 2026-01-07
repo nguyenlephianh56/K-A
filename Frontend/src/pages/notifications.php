@@ -36,35 +36,61 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
-        .noti-container { max-width: 900px; margin: 0 auto; min-height: 600px; }
+        .noti-container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            min-height: 600px; }
         .noti-card {
-            border: none; border-radius: 12px; background: #fff;
+            border: none; 
+            border-radius: 12px; 
+            background: #fff;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            position: relative; overflow: hidden;
+            position: relative; 
+            overflow: hidden;
         }
-        .noti-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .noti-card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
         .noti-card::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-            width: 4px; background: #4A70A9;
+            content: ''; 
+            position: absolute; 
+            left: 0; top: 0; bottom: 0;
+            width: 4px; 
+            background: #4A70A9;
         }
         .noti-icon-box {
-            width: 45px; height: 45px;
-            background-color: #fff5f5; color: #4A70A9;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            width: 45px; 
+            height: 45px;
+            background-color: #fff5f5; 
+            color: #4A70A9;
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             font-size: 1.2rem;
         }
-        .noti-date { font-size: 0.8rem; color: #999; white-space: nowrap; }
-        .noti-title { font-weight: 700; color: #333; margin-bottom: 0.5rem; }
-        .noti-body { color: #555; line-height: 1.6; font-size: 0.95rem; }
-        .empty-state img { width: 120px; opacity: 0.5; margin-bottom: 1rem; }
+        .noti-date { 
+            font-size: 0.8rem; 
+            color: #999; 
+            white-space: nowrap; }
+        .noti-title { 
+            font-weight: 700; 
+            color: #333; 
+            margin-bottom: 0.5rem; }
+        .noti-body { 
+            color: #555; 
+            line-height: 1.6; 
+            font-size: 0.95rem; }
+        .empty-state img { 
+            width: 120px; 
+            opacity: 0.5; 
+            margin-bottom: 1rem; }
     </style>
 </head>
 <body class="bg-light">
 
     <?php 
-        // Dùng __DIR__ để đi ra thư mục cha (..) rồi vào components
-       
         $header_path = __DIR__ . '/../partials/header.php'; 
             include $header_path;
     

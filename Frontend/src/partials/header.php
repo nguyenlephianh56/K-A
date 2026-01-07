@@ -1,14 +1,10 @@
 <?php
-//  KẾT NỐI BACKEND (CODE CỦA BẠN)
-// Dùng __DIR__ để lấy đường dẫn hiện tại của file header.php
 $auth_file = __DIR__ . '/../../../Backend/functions/auth.php';
 
 if (file_exists($auth_file)) {
     require_once $auth_file;
 } else {
-    // Fallback: Nếu chưa có backend thật thì start session tạm để chạy giao diện
     if (session_status() === PHP_SESSION_NONE) session_start();
-    // die("Lỗi: Không tìm thấy file auth.php..."); // Bỏ comment dòng này nếu muốn bắt buộc phải có file
 }
 
 // ĐỊNH NGHĨA ĐƯỜNG DẪN TÀI NGUYÊN (ASSETS)
@@ -237,11 +233,11 @@ if (isset($_SESSION['user'])) {
         document.addEventListener("DOMContentLoaded", function() {
             // Hàm lấy dữ liệu thông báo
             function fetchNotifications() {
-                // Đường dẫn API (Đảm bảo đúng đường dẫn file bạn đã tạo ở bước trước)
+                // Đường dẫn API 
                 fetch('/K&A/Backend/api/get_notifications.php')
                     .then(response => response.json())
                     .then(data => {
-                        // 1. Cập nhật số trên chuông
+                        //Cập nhật số trên chuông
                         const badge = document.getElementById('noti_badge');
                         const list = document.getElementById('noti_list');
 

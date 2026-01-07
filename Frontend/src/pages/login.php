@@ -1,6 +1,6 @@
 <?php
-//KHỞI ĐỘNG SESSION ĐỂ NHẬN THÔNG BÁO TỪ XULY_LOGIN.PHP
-if (session_status() === PHP_SESSION_NONE) session_start();
+if (session_status() === PHP_SESSION_NONE) 
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -96,7 +96,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
             setTimeout(function() {
                 form.reset();
                 
-                // Xóa thủ công từng ô input để chắc chắn 100%
+                // Xóa thủ công từng ô input 
                 let inputs = form.querySelectorAll("input");
                 inputs.forEach(function(input) {
                     // Trừ các input hidden (như role) và nút submit

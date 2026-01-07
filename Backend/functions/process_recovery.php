@@ -23,7 +23,7 @@ $_SESSION['old_input'] = [
     'phone'    => $phone
 ];
 
-// 2. Validate cơ bản
+//Validate cơ bản
 if (empty($username) || empty($email) || empty($phone) || empty($new_pass)) {
     $_SESSION['error_msg'] = "Vui lòng nhập đầy đủ thông tin.";
     header("Location: recovery_password.php");
@@ -36,8 +36,7 @@ if ($new_pass !== $confirm_pass) {
     exit();
 }
 
-// 3. Kiểm tra thông tin xác thực trong Database
-// Cả 3 trường Username, Email, Phone phải cùng thuộc về 1 người dùng
+//Kiểm tra thông tin xác thực trong Database
 $sql_check = "SELECT user_id FROM users WHERE username = ? AND email = ? AND phone = ?";
 $stmt = $conn->prepare($sql_check);
 
@@ -47,7 +46,7 @@ if ($stmt) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // --- THÔNG TIN KHỚP: TIẾN HÀNH ĐỔI MẬT KHẨU ---
+        //khớp thông tin -> TIẾN HÀNH ĐỔI MẬT KHẨU 
         
         $stmt->close(); // Đóng kết nối cũ
 
@@ -83,7 +82,7 @@ if ($stmt) {
         }
 
     } else {
-        // --- THÔNG TIN KHÔNG KHỚP ---
+        // THÔNG TIN KHÔNG KHỚP 
         $_SESSION['error_msg'] = "Thông tin xác minh không chính xác (Username, Email hoặc SĐT bị sai).";
     }
 } else {
@@ -92,7 +91,6 @@ if ($stmt) {
 
 $conn->close();
 
-// Nếu chạy đến đây nghĩa là có lỗi, quay lại trang nhập
 header("Location: forgotpassword.php");
 exit();
 ?>

@@ -8,7 +8,7 @@ include '../src/partials/header.php';
         <img src="<?php echo $assets_path; ?>images/banner1.png" alt="banner-chinh">
     </div>
 </section>
-
+<!-- form tìm kiếm -->
 <div class="container my-5 sticky-top" style="top: 62px; z-index: 900;">
     <div class="card card-advance-search glass-search-card shadow-sm p-4">
         <form class="row g-3 align-items-center" action="../src/pages/find.php" method="GET">
@@ -57,7 +57,7 @@ include '../src/partials/header.php';
         </form>
     </div>
 </div>
-
+<!-- slide banner qc -->
 <div id="multiItemCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#multiItemCarousel" data-bs-slide-to="0" class="active"></button>
@@ -96,7 +96,6 @@ include '../src/partials/header.php';
         
         <?php
         // KIỂM TRA TRƯỜNG ĐẠI HỌC CỦA USER
-        // Mặc định là không có trường (0)
         $my_university_id = 0; 
         $section_title = "Lựa chọn mới nhất"; // Tiêu đề mặc định
 
@@ -112,7 +111,7 @@ include '../src/partials/header.php';
 
         // XÂY DỰNG CÂU SQL DỰA TRÊN KẾT QUẢ KIỂM TRA
         if (!empty($my_university_id)) {
-            // --- TRƯỜNG HỢP A: USER CÓ TRƯỜNG ĐH -> LỌC THEO TRƯỜNG ---
+            //lọc theo trường nếu user có trường đại học
             $section_title = "Gợi ý gần trường bạn";
             
             $sql = "SELECT 
@@ -134,7 +133,7 @@ include '../src/partials/header.php';
             $result = $stmt->get_result();
 
         } else {
-            // --- TRƯỜNG HỢP B: KHÔNG CÓ TRƯỜNG HOẶC CHƯA LOGIN -> LẤY MỚI NHẤT ---
+            // nếu là người bình thường thì hiển thị các lựa chọn mới nhất
             
             $sql = "SELECT 
                         r.*, 
@@ -227,9 +226,9 @@ include '../src/partials/header.php';
         while($row = $result->fetch_assoc()) {
             
             // XỬ LÝ ẢNH
-            // Vì ta đã lấy được link ảnh qua câu SQL (cột 'thumbnail') nên không cần json_decode nữa
+            // Vì ta đã lấy được link ảnh qua câu SQL (cột 'thumbnail')
             if (!empty($row['thumbnail'])) {
-                // Nếu trong CSDL bạn lưu đường dẫn đầy đủ thì dùng luôn
+                // Nếu trong CSDL lưu đường dẫn đầy đủ thì dùng luôn
                 // Nếu chỉ lưu tên file thì nối thêm $assets_path
                 $thumb = $row['thumbnail']; 
             } else {
@@ -237,7 +236,6 @@ include '../src/partials/header.php';
             }
 
             // Gọi Component hiển thị
-            // Lưu ý: Đường dẫn tùy thuộc vị trí file index của bạn
             include '../src/component/product-card.php'; 
         }
     } else {
@@ -248,7 +246,7 @@ include '../src/partials/header.php';
 </div>
 </section>
 
-<!-- cac phuong cua da nang cua da nang -->
+<!-- cac quan cua da nang cua da nang -->
 <section class="outstanding-cities py-5 bg-white">
     <div class="container">
 

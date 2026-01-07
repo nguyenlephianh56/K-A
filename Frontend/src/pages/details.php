@@ -1,7 +1,5 @@
 <?php
-//KẾT NỐI VÀ HEADER
 require_once '../../../Backend/config/db_connect.php';
-// Header nằm cùng thư mục public thì dùng require_once 'header.php'
 require_once '../partials/header.php'; 
 
 //LẤY ID TỪ URL
@@ -72,7 +70,6 @@ $address_full = $room['street'] . ', ' . $room['ward'] . ', ' . $room['city'];
 function get_image_url($path, $base_url) {
     if (strpos($path, 'http') === 0) return $path;
     $filename = basename($path); 
-    // Trỏ về src/uploads/
     return $base_url . 'src/uploads/' . $filename; 
 }
 ?>
@@ -290,7 +287,7 @@ $result_related = $stmt_related->get_result();
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <?php while ($row = $result_related->fetch_assoc()): ?>
             <?php 
-                // --- XỬ LÝ ẢNH THUMBNAIL (GIỐNG INDEX.PHP) ---
+                // XỬ LÝ ẢNH THUMBNAIL 
                 $thumb = $assets_path . 'images/no-image.jpg';
                 if (!empty($row['thumbnail'])) {
                     // Logic cắt tên file và ghép đường dẫn chuẩn
@@ -298,7 +295,7 @@ $result_related = $stmt_related->get_result();
                     $thumb = $base_url . 'src/uploads/' . $filename;
                 }
                 $project_root = '';
-                // --- GỌI COMPONENT CARD DỌC ---              
+                //GỌI COMPONENT CARD             
                 include '../component/product-card.php'; 
             ?>
         <?php endwhile; ?>

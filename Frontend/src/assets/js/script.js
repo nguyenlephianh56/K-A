@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // XỬ LÝ KHI CHỌN ẢNH (Sự kiện Change)
     if (fileInput) {
-        // Mẹo: Click vào input thì reset giá trị để có thể chọn lại đúng file vừa chọn (nếu lỡ xóa nhầm)
         fileInput.addEventListener('click', function () {
             this.value = null;
         });
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Chỉ lấy file ảnh
                     if (file.type.startsWith('image/')) {
-                        // Kiểm tra trùng lặp (Tùy chọn, ở đây tôi cho phép trùng để đơn giản)
+                        // Kiểm tra trùng lặp 
                         dt.items.add(file);
                     }
                 }
@@ -82,13 +81,13 @@ document.addEventListener('DOMContentLoaded', function () {
         postModal.addEventListener('hidden.bs.modal', function () {
             console.log("Đóng modal -> Dọn dẹp sạch sẽ.");
 
-            // 1. Reset các ô text, select
+            // Reset các ô text, select
             if (form) form.reset();
 
-            // 2. Xóa sạch kho ảnh
+            // Xóa sạch kho ảnh
             dt.items.clear();
             
-            // 3. Xóa input file và preview
+            //  Xóa input file và preview
             if (fileInput) {
                 fileInput.value = '';
                 fileInput.files = dt.files; // Gán list rỗng

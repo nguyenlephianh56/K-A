@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "SELECT * FROM users WHERE username = ? OR email = ?";
     
-    // Biến cờ để kiểm tra trạng thái login
+    // Biến kiểm tra trạng thái login
     $login_success = false;
 
     if ($stmt = $conn->prepare($sql)) {
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
 
             if (password_verify($password_input, $user['password'])) {
-                // --- 1. ĐĂNG NHẬP THÀNH CÔNG ---
+                // ---  ĐĂNG NHẬP THÀNH CÔNG ---
                 $login_success = true;
 
                 // Lưu Session User
@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'fullname'  => $user['full_name'],
                     'email'     => $user['email'],
                     'role'      => $user['role'],
-                    'avatar'    => $user['avatar'] ?? 'default.jpg'
                 ];
 
                 // Lưu thông báo Success

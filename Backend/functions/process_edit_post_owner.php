@@ -9,13 +9,9 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'owner') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // --- [SỬA LỖI QUAN TRỌNG] ---
+
     // Kiểm tra kỹ key session ID (thường là 'id' dựa trên code useraccount.php cũ)
     $current_owner_id = $_SESSION['user']['id'] ?? $_SESSION['user']['user_id']; 
-
-    // Debug: Nếu nghi ngờ ID bị sai, bỏ comment dòng dưới để kiểm tra xong rồi xóa đi
-    // die("Owner ID: " . $current_owner_id);
 
     $room_id = $_POST['room_id'];
     $title = $_POST['title'];
@@ -29,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $status = $_POST['status'];
 
-    // 2. CẬP NHẬT SQL
+    //CẬP NHẬT SQL
     $sql = "UPDATE rooms 
             SET title = ?, price = ?, area = ?, street = ?, ward = ?, city = ?, status = ? 
             WHERE room_id = ? AND owner_id = ?";
@@ -45,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // (Nếu update thành công hoặc dữ liệu y chang cũ thì stmt->errno == 0)
         if ($stmt->errno == 0) {
             
-            // --- [THÊM] Gán thông báo Session để hiện Popup xanh đẹp mắt ---
+            //Gán thông báo Session để hiện Popup xanh đẹp mắt
             $_SESSION['notification'] = [
                 'type' => 'success', 
                 'title' => 'Thành công', 
@@ -72,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 
-    // 3. QUAY VỀ TRANG QUẢN LÝ
+    // QUAY VỀ TRANG QUẢN LÝ
     header("Location: ../../Frontend/src/pages/useraccount.php?tab=myposts");
     exit();
 }

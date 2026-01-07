@@ -37,12 +37,12 @@ if ($type_id > 0) {
 // Khởi tạo mệnh đề WHERE cơ bản
 $where_clauses = ["r.status = 'available'"];
 
-// A. Lọc theo Loại phòng
+//Lọc theo Loại phòng
 if ($type_id > 0) {
     $where_clauses[] = "r.room_type_id = $type_id";
 }
 
-// B. Lọc theo Giá (Dựa trên value của Radio button)
+//Lọc theo Giá (Dựa trên value của Radio button)
 if (!empty($price_range)) {
     switch ($price_range) {
         case '1': $where_clauses[] = "r.price < 1000000"; break;
@@ -53,7 +53,7 @@ if (!empty($price_range)) {
     }
 }
 
-// C. Lọc theo Diện tích
+//Lọc theo Diện tích
 if (!empty($area_range)) {
     switch ($area_range) {
         case '1': $where_clauses[] = "r.area < 20"; break;
@@ -64,7 +64,7 @@ if (!empty($area_range)) {
     }
 }
 
-// D. Lọc theo Tiện nghi (Quan trọng: Dùng EXISTS để lọc phòng có tiện nghi đó)
+//Lọc theo Tiện nghi (Quan trọng: Dùng EXISTS để lọc phòng có tiện nghi đó)
 if (!empty($amenities) && is_array($amenities)) {
     foreach ($amenities as $am_id) {
         $am_id = intval($am_id);
@@ -167,7 +167,6 @@ $res_all_amenities = $conn->query($sql_all_amenities);
             if ($total_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     // Include component card ngang
-                    // Lưu ý đường dẫn: từ public/listing.php -> lùi ra src/component
                     include '../component/product-card-long.php';
                 }
             } else {

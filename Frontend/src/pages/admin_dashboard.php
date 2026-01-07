@@ -24,23 +24,22 @@ function get_image_path($path_from_db) {
 // ============================================================
 // THỐNG KÊ SỐ LIỆU
 // ============================================================
-// 1. Tổng thành viên
+// Tổng thành viên
 $sql_users = "SELECT COUNT(*) as total FROM users WHERE role != 'admin'"; 
 $res_users = $conn->query($sql_users);
 $total_users = $res_users->fetch_assoc()['total'];
 
-// 2. Tổng bài đăng
+//Tổng bài đăng
 $sql_posts = "SELECT COUNT(*) as total FROM rooms";
 $res_posts = $conn->query($sql_posts);
 $total_posts = $res_posts->fetch_assoc()['total'];
 
-// 3. Bài đăng mới trong 7 ngày qua
+//Bài đăng mới trong 7 ngày qua
 $sql_new_posts = "SELECT COUNT(*) as total FROM rooms WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
 $res_new = $conn->query($sql_new_posts);
 $new_posts_count = ($res_new) ? $res_new->fetch_assoc()['total'] : 0;
 
-// 4. [QUAN TRỌNG - ĐÃ SỬA THEO CSDL CỦA BẠN]
-// Thay r.user_id thành r.owner_id
+// Danh sách bài đăng mới nhất (5 bài)
 $sql_recent_list = "SELECT r.*, COALESCE(u.full_name, 'Người dùng ẩn') as full_name 
                     FROM rooms r 
                     LEFT JOIN users u ON r.owner_id = u.user_id 

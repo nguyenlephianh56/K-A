@@ -1,8 +1,5 @@
 <?php 
-// NHÚNG FILE XỬ LÝ (Đường dẫn lùi 3 cấp ra thư mục gốc K&A)
-include '../../../Backend/functions/find_process.php'; 
-
-// Nhúng Header
+include '../../../Backend/functions/find_process.php';
 require_once '../partials/header.php'; 
 
 // Xử lý biến hiển thị mặc định để tránh lỗi Undefined

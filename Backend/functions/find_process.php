@@ -1,6 +1,5 @@
 <?php
 require_once '../../../Backend/config/db_connect.php';
-$conn->set_charset("utf8mb4");
 
 // QUAN TRỌNG: Thiết lập font tiếng Việt
 $conn->set_charset("utf8mb4");
@@ -10,10 +9,10 @@ $limit = 6;
 $current_page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1; 
 $offset = ($current_page - 1) * $limit; 
 
-// Nhận tham số (có kiểm tra isset để tránh lỗi Warning)
+// Nhận tham số
 $keyword  = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 $district = isset($_GET['district']) ? $_GET['district'] : '';
-$type_id  = isset($_GET['type']) ? intval($_GET['type']) : 0;
+$type_id  = isset($_GET['type']) ? intval($_GET['type']) : 0; // Đã nhận biến ở đây
 $sort_option = isset($_GET['sort']) ? $_GET['sort'] : 'newest';
 $price_range = isset($_GET['price_range']) ? $_GET['price_range'] : '';
 $area_range  = isset($_GET['area_range']) ? $_GET['area_range'] : '';
@@ -22,23 +21,28 @@ $amenities   = isset($_GET['amenity']) ? $_GET['amenity'] : [];
 // XÂY DỰNG MỆNH ĐỀ WHERE
 $where_clauses = ["r.status = 'available'"]; 
 
-// A. Tìm theo TỪ KHÓA 
+//Tìm theo TỪ KHÓA 
 if (!empty($keyword)) {
     $safe_key = $conn->real_escape_string($keyword);
-    // Tìm trong Tên phòng, Tên đường, Phường, Quận
     $where_clauses[] = "(r.title LIKE '%$safe_key%' 
                         OR r.street LIKE '%$safe_key%' 
                         OR r.ward LIKE '%$safe_key%' 
                         OR r.city LIKE '%$safe_key%')";
 }
 
-// B. Tìm theo QUẬN (tìm trong ward và city)
+//Tìm theo QUẬN
 if (!empty($district)) {
     $safe_district = $conn->real_escape_string($district);
-    // Dùng LIKE để tìm tương đối (VD: chọn 'Hải Châu' vẫn tìm ra 'Quận Hải Châu')
     $where_clauses[] = "(r.ward LIKE '%$safe_district%' OR r.city LIKE '%$safe_district%')";
 }
-// C. Lọc Giá
+
+// Tìm theo LOẠI NHÀ (ĐÃ BỔ SUNG)
+if ($type_id > 0) {
+    // Giả sử trong bảng rooms của bạn cột loại phòng tên là room_type_id
+    $where_clauses[] = "r.room_type_id = $type_id";
+}
+
+//Lọc Giá
 if (!empty($price_range)) {
     switch ($price_range) {
         case '1': $where_clauses[] = "r.price < 1000000"; break;
@@ -49,7 +53,7 @@ if (!empty($price_range)) {
     }
 }
 
-// D. Lọc Diện tích
+//Lọc Diện tích
 if (!empty($area_range)) {
     switch ($area_range) {
         case '1': $where_clauses[] = "r.area < 20"; break;
@@ -60,7 +64,7 @@ if (!empty($area_range)) {
     }
 }
 
-// E. Lọc Tiện nghi
+//Lọc Tiện nghi
 if (!empty($amenities) && is_array($amenities)) {
     foreach ($amenities as $am_id) {
         $am_id = intval($am_id);
@@ -71,9 +75,10 @@ if (!empty($amenities) && is_array($amenities)) {
     }
 }
 
+// Gộp các điều kiện lại
 $where_sql = " WHERE " . implode(" AND ", $where_clauses);
 
-//  ĐẾM TỔNG SỐ TIN
+// ĐẾM TỔNG SỐ TIN
 $total_pages = 0;
 $total_records = 0;
 $sql_count = "SELECT COUNT(*) as total FROM rooms r " . $where_sql;
@@ -87,7 +92,7 @@ if ($result_count) {
     }
 }
 
-// TRUY VẤN DỮ LIỆU CHÍNH (Sửa JOIN thành LEFT JOIN để an toàn)
+// TRUY VẤN DỮ LIỆU CHÍNH 
 $sql = "SELECT 
             r.*, 
             u.full_name,
@@ -106,7 +111,6 @@ switch ($sort_option) {
 $sql .= " LIMIT $limit OFFSET $offset";
 
 $result = $conn->query($sql);
-$total_rows = ($result) ? $result->num_rows : 0;
 
 // ĐOẠN KIỂM TRA LỖI 
 if (!$result) {
@@ -114,7 +118,7 @@ if (!$result) {
 }
 $total_rows = $result->num_rows;
 
-// Lấy danh sách tiện nghi cho Sidebar
+// Lấy danh sách tiện nghi cho Sidebar (nếu cần dùng ở view)
 $sql_all_amenities = "SELECT * FROM amenities";
 $res_all_amenities = $conn->query($sql_all_amenities);
 ?>

@@ -9,14 +9,14 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-$user_id = $_SESSION['user']['id']; // Hoặc user_id tùy code login của bạn
+$user_id = $_SESSION['user']['id']; 
 $user_role = $_SESSION['user']['role'];
 
 
 // --- XỬ LÝ POST (PROFILE, PASSWORD, STATUS, DELETE) ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    // 1. Cập nhật Hồ sơ
+    //Cập nhật Hồ sơ
     if (isset($_POST['update_profile'])) {
         $fullname = trim($_POST['fullname']);
         $phone = trim($_POST['phone']);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // 2. Đổi Mật khẩu
+    // Đổi Mật khẩu
     if (isset($_POST['change_password'])) {
         $old_pass = $_POST['old_password'];
         $new_pass = $_POST['new_password'];
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // 3. Cập nhật trạng thái bài đăng (Owner)
+    // Cập nhật trạng thái bài đăng (Owner)
     if (isset($_POST['update_status']) && $user_role == 'owner') {
         $room_id = intval($_POST['room_id']);
         $new_status = $_POST['status'];
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // 4. Xóa bài đăng (Owner)
+    //  Xóa bài đăng (Owner)
     if (isset($_POST['delete_post']) && $user_role == 'owner') {
         $room_id = intval($_POST['room_id']);
 
@@ -555,7 +555,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. XỬ LÝ MODAL SỬA BÀI ĐĂNG (Mapping dữ liệu từ nút bấm vào form)
+    //  XỬ LÝ MODAL SỬA BÀI ĐĂNG (Mapping dữ liệu từ nút bấm vào form)
     var editPostModal = document.getElementById('editPostModal');
     if (editPostModal) {
         editPostModal.addEventListener('show.bs.modal', function (event) {
@@ -584,7 +584,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. XỬ LÝ THÔNG BÁO FLASH (SUCCESS/ERROR)
+    // XỬ LÝ THÔNG BÁO FLASH (SUCCESS/ERROR)
     <?php if (isset($_SESSION['notification'])): ?>
         const type = "<?php echo $_SESSION['notification']['type']; ?>";
         const title = "<?php echo $_SESSION['notification']['title']; ?>";
@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <?php unset($_SESSION['notification']); ?>
     <?php endif; ?>
 
-    // 3. XỬ LÝ LỖI PERMISSION (TỪ SESSION)
+    //XỬ LÝ LỖI PERMISSION (TỪ SESSION)
     <?php if (isset($_SESSION['permission_error'])): ?>
         var msg = "<?php echo $_SESSION['permission_error']; ?>";
         document.getElementById('errorModalMessage').innerText = msg;
@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <?php unset($_SESSION['permission_error']); ?> 
     <?php endif; ?>
 
-    // 4. XỬ LÝ MODAL XÓA (Gửi ID vào form xóa)
+    // XỬ LÝ MODAL XÓA (Gửi ID vào form xóa)
     var deleteModal = document.getElementById('deleteConfirmModal');
     if (deleteModal) {
         deleteModal.addEventListener('show.bs.modal', function (event) {

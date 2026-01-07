@@ -16,7 +16,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'owner') {
 // Chỉ xử lý khi có dữ liệu gửi lên (POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    // --- A. LẤY DỮ LIỆU TỪ FORM ---
+    // LẤY DỮ LIỆU TỪ FORM 
     // Dùng toán tử ?? '' để tránh lỗi nếu dữ liệu bị thiếu
     $owner_id = $_SESSION['user']['id'];
     $title = $_POST['title'] ?? '';
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $room_type_id = $_POST['room_type_id']; 
 
-    // --- B. LƯU THÔNG TIN PHÒNG (TABLE ROOMS) ---
+    //LƯU THÔNG TIN PHÒNG (TABLE ROOMS)
     $sql_room = "INSERT INTO rooms (owner_id, room_type_id, title, description, price, area, street, ward, city, status, created_at) 
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'available', NOW())";
                  
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Lấy ID của phòng vừa tạo để dùng cho ảnh và tiện ích
         $room_id = $conn->insert_id; 
         
-        // --- C. XỬ LÝ TIỆN ÍCH (AMENITIES) ---
+        //XỬ LÝ TIỆN ÍCH (AMENITIES) 
         if (isset($_POST['amenities']) && is_array($_POST['amenities'])) {
             $sql_amenity = "INSERT INTO room_amenities (room_id, amenity_id) VALUES (?, ?)";
             $stmt_am = $conn->prepare($sql_amenity);
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt_am->close();
         }
 
-       // --- D. XỬ LÝ HÌNH ẢNH ---
+       //  XỬ LÝ HÌNH ẢNH
         if (isset($_FILES['room_images'])) {
             
             // Xác định đường dẫn thư mục uploads (Vẫn giữ nguyên để move file)
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt_photo->close();
         }
 
-        // --- E. TẠO THÔNG BÁO VÀ CHUYỂN HƯỚNG ---
+        // TẠO THÔNG BÁO VÀ CHUYỂN HƯỚNG
         
         // Lưu thông báo vào Session để hiển thị ở trang sau
         $_SESSION['notification'] = [

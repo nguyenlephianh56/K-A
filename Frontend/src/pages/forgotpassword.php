@@ -3,22 +3,22 @@ session_start();
 require_once '../../../Backend/config/db_connect.php';
 
 $message = "";
-$message_type = ""; // success hoặc error
+$message_type = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btnReset'])) {
-    // 1. Lấy dữ liệu từ form
+    //Lấy dữ liệu từ form
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $phone = trim($_POST['phone']);
     $new_pass = $_POST['new_password'];
     $confirm_pass = $_POST['confirm_password'];
 
-    // 2. Kiểm tra mật khẩu xác nhận
+    //Kiểm tra mật khẩu xác nhận
     if ($new_pass !== $confirm_pass) {
         $message = "Mật khẩu xác nhận không khớp!";
         $message_type = "error";
     } else {
-        // 3. Kiểm tra xem có người dùng nào khớp cả 3 thông tin không
+        // Kiểm tra xem có người dùng nào khớp cả 3 thông tin không
         // (Username + Email + Phone phải đúng của cùng 1 người)
         $sql_check = "SELECT user_id FROM users WHERE username = ? AND email = ? AND phone = ?";
         $stmt = $conn->prepare($sql_check);

@@ -1,15 +1,14 @@
 <?php
-// Backend/api/get_notifications.php
-require_once '../config/db_connect.php'; // Đảm bảo đường dẫn đúng
+require_once '../config/db_connect.php';
 
 header('Content-Type: application/json');
 
-// 1. Đếm tổng số thông báo đang có
+//Đếm tổng số thông báo đang có
 $sql_count = "SELECT COUNT(*) as total FROM notifications";
 $res_count = $conn->query($sql_count);
 $total = $res_count->fetch_assoc()['total'];
 
-// 2. Lấy 5 thông báo mới nhất để hiện trong danh sách thả xuống
+//Lấy 5 thông báo mới nhất để hiện trong danh sách thả xuống
 $sql_list = "SELECT * FROM notifications ORDER BY created_at DESC LIMIT 5";
 $res_list = $conn->query($sql_list);
 
