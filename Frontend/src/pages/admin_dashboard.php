@@ -253,11 +253,7 @@ $res_recent_list = $conn->query($sql_recent_list);
                 <?php if ($tab == 'users'): ?>
                     <div class="card shadow-sm border-0">
                         <div class="card-header card-header-admin bg-white d-flex justify-content-between align-items-center">
-                            <span><i class="bi bi-people-fill me-2"></i>Danh sách người dùng</span>
-                            <div class="input-group input-group-sm w-auto">
-                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
-                            </div>
+                            <span><i class="bi bi-people-fill me-2"></i>Danh sách người dùng</span>            
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -274,7 +270,7 @@ $res_recent_list = $conn->query($sql_recent_list);
                                         if ($result_users && $result_users->num_rows > 0) {
                                             while ($row = $result_users->fetch_assoc()) {
                                                 $role_badge = ($row['role'] == 'owner') ? 'bg-success bg-gradient text-white' : (($row['role'] == 'admin') ? 'bg-danger' : 'bg-secondary');
-                                                $role_name = ($row['role'] == 'owner') ? 'Chủ trọ' : (($row['role'] == 'admin') ? 'Admin' : 'Người tìm phòng');
+                                                $role_name = ($row['role'] == 'owner') ? 'Chủ trọ' : (($row['role'] == 'admin') ? 'Admin' : 'Sinh viên');
                                                 $u_avatar = !empty($row['avatar']) ? get_image_path($row['avatar']) : 'https://ui-avatars.com/api/?name=' . urlencode($row['full_name']) . '&background=random';
                                         ?>
                                             <tr>

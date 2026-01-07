@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 $user_id = $_SESSION['user']['id']; // Hoặc user_id tùy code login của bạn
 $user_role = $_SESSION['user']['role'];
 
+
 // --- XỬ LÝ POST (PROFILE, PASSWORD, STATUS, DELETE) ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
@@ -160,7 +161,6 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
         <div class="col-lg-3 col-md-4">
             <div class="card shadow-sm border-0 sticky-top" style="top: 100px;">
                 <div class="card-body text-center p-4" >
-                    <img src="<?php echo $assets_path; ?>images/user-default.png" class="rounded-circle border mb-3" width="100" height="100" alt="Avatar">
                     <h5 class="fw-bold"><?php echo htmlspecialchars($user_info['username']); ?></h5>
                     
                     <?php if ($user_role == 'student' && !empty($user_info['uni_name'])): ?>
@@ -203,7 +203,7 @@ $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'profile';
                         <form method="POST">
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold">Tên đăng nhập</label>
+                                    <label class="form-label fw-bold">Tên đăng nhập</label> 
                                     <input type="text" class="form-control bg-light" value="<?php echo htmlspecialchars($user_info['username']); ?>" readonly>
                                 </div>
                                 <div class="col-md-6">
