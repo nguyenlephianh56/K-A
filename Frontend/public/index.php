@@ -251,154 +251,80 @@ include '../src/partials/header.php';
 <!-- cac phuong cua da nang cua da nang -->
 <section class="outstanding-cities py-5 bg-white">
     <div class="container">
-        
+
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="chu_tieu_de fw-bold text-uppercase mb-0">Phường ở Đà Nẵng</h3>
-            
-            </div>
+            <h3 class="chu_tieu_de fw-bold text-uppercase mb-0">Các Quận Huyện Tại Đà Nẵng</h3>
+        </div>
 
         <div id="wardCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            
+
             <div class="carousel-inner">
-                
-                <!-- 1 hang carousel -->
+
                 <div class="carousel-item active">
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
-                        
+
                         <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/anhai.jpg" alt="An Hải" class="img-fluid w-100">
+                            <a href="../src/pages/find.php?keyword=&district=Hải+Châu&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/haichau.jpg" alt="Hải Châu" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">An Hải</h6>
-                                </div>
-                            </a>
-                        </div>
-                        
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/ankhe.jpg" alt="An Khê" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">An Khê</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">Q. Hải Châu</h6>
                                 </div>
                             </a>
                         </div>
 
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/thanhkhe.jpg" alt="Thanh Khê" class="img-fluid w-100">
+                        <div class="col">
+                            <a href="../src/pages/find.php?keyword=&district=Sơn+Trà&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/sontra.jpg" alt="Sơn Trà" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Thanh Khê</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">Q. Sơn Trà</h6>
                                 </div>
                             </a>
                         </div>
 
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/haichau.jpg" alt="Hải Châu" class="img-fluid w-100">
+                        <div class="col">
+                            <a href="../src/pages/find.php?keyword=&district=Ngũ+Hành+Sơn&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/nguhanhson.jpg" alt="Ngũ Hành Sơn" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hải Châu</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">Q. Ngũ Hành Sơn</h6>
                                 </div>
                             </a>
                         </div>
 
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/camle.jpeg" alt="Cẩm Lệ" class="img-fluid w-100">
+                        <div class="col">
+                            <a href="../src/pages/find.php?keyword=&district=Thanh+Khê&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/thanhkhe.jpg" alt="Thanh Khê" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Cẩm Lệ</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">Q. Thanh Khê</h6>
                                 </div>
                             </a>
                         </div>
 
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/bana.jpg" alt="Bà Nà" class="img-fluid w-100">
+                        <div class="col">
+                            <a href="../src/pages/find.php?keyword=&district=Liên+Chiểu&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/lienchieu.jpg" alt="Liên Chiểu" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Bà Nà</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">Q. Liên Chiểu</h6>
                                 </div>
                             </a>
                         </div>
 
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
-                        
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/haivan.jpg" alt="Hải Vân" class="img-fluid w-100">
+                        <div class="col">
+                            <a href="../src/pages/find.php?keyword=&district=Cẩm+Lệ&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/hoacuong.jpg" alt="Cẩm Lệ" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hải Vân</h6>
-                                </div>
-                            </a>
-                        </div>
-
-                           <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/hoacuong.jpg" alt="Hòa Cường" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hòa Cường</h6>
-                                </div>
-                            </a>
-                        </div>
-
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/hoakhanh.webp" alt="Hòa Khánh" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hòa Khánh</h6>
-                                </div>
-                            </a>
-                        </div>
-
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/hoatien.jpg" alt="Hòa tiến" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hòa Tiến</h6>
-                                </div>
-                            </a>
-                        </div>
-
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/hoavang.jpg" alt="Hòa Vang" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hòa Vang</h6>
-                                </div>
-                            </a>
-                        </div>
-
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/hoaxuan.jpg" alt="Hòa Xuân" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Hòa Xuân</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">Q. Cẩm Lệ</h6>
                                 </div>
                             </a>
                         </div>
@@ -408,59 +334,35 @@ include '../src/partials/header.php';
 
                 <div class="carousel-item">
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
-                        
-                           <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/lienchieu.jpg" alt="Liên Chiểu" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Liên Chiểu</h6>
-                                </div>
-                            </a>
-                        </div>
 
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/nguhanhson.jpg" alt="5hanhson" class="img-fluid w-100">
+                        <div class="col">
+                            <a href="../src/pages/find.php?keyword=&district=Hòa+Vang&type=" class="ward-card shadow-sm d-block text-decoration-none">
+                                <div class="ward-img-container" style="height: 200px; overflow: hidden;">
+                                    <img src="../src/assets/images/hoavang.jpg" alt="Hòa Vang" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 </div>
                                 <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Ngũ Hành Sơn</h6>
+                                    <h6 class="fw-bold text-dark mb-0 small">H. Hòa Vang</h6>
                                 </div>
                             </a>
                         </div>
                         
-
-                            <div class="col">
-                            <a href="#" class="ward-card shadow-sm d-block text-decoration-none">
-                                <div class="ward-img-container">
-                                    <img src="..//src/assets/images/sontra.jpg" alt="HCM" class="img-fluid w-100">
-                                </div>
-                                <div class="ward-info p-2 bg-white text-center">
-                                    <h6 class="fw-bold text-dark mb-0 small">Sơn Trà</h6>
-                                </div>
-                            </a>
                         </div>
-
-                    </div>
                 </div>
 
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#wardCarousel" data-bs-slide="prev" style="width: 5%; margin-left: -5%;">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#wardCarousel" data-bs-slide="prev" style="width: 5%; margin-left: -6%;">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true" style="background-size: 50%;"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#wardCarousel" data-bs-slide="next" style="width: 5%; margin-right: -5%;">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#wardCarousel" data-bs-slide="next" style="width: 5%; margin-right: -6%;">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true" style="background-size: 50%;"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
 
     </div>
 </section>
-
 <!-- danh muc phong nguyên căn -->
 <section class="nha_nguyen_can my-4 pt-4 border"> 
     
