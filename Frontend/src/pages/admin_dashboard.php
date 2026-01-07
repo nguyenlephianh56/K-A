@@ -515,7 +515,7 @@ $res_recent_list = $conn->query($sql_recent_list);
           <div class="modal-header text-black" style="background-color: #8FABD4;"><h5 class="modal-title">Chỉnh sửa tin đăng</h5>
           <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"></button></div>
           <div class="modal-body">
-            <form action="../../../Backend/functions/process_edit_post.php" method="POST">
+            <form action="../../../Backend/functions/process_edit_post_admin.php" method="POST">
                 <input type="hidden" name="room_id" id="edit_post_id">
                 <div class="mb-3"><label class="form-label fw-bold">Tiêu đề</label><input type="text" class="form-control" name="title" id="edit_post_title" required></div>
                 <div class="row">

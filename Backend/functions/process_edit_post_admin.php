@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("sdsssssi", $title, $price, $area, $street, $ward, $city, $status, $room_id);
 
     if ($stmt->execute()) {
-        header("Location: ../../Frontend/src/pages/admin_dashboard.php?tab=posts&msg=updated");
+        header("Location: ../../Frontend/src/pages/admin_dashboard.php?tab=posts");
     } else {
         echo "Lỗi: " . $conn->error;
     }
