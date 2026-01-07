@@ -1,13 +1,12 @@
 <?php
 // Xử lý ảnh đại diện
-// 1. Ảnh mặc định
+//Ảnh mặc định
 $thumb = $assets_path . 'images/no-image.jpg'; 
 
-// 2. Nếu có ảnh từ DB
+//Nếu có ảnh từ DB
 if (!empty($row['thumbnail'])) {
     
     // lấy cái tên file cuối cùng (Vd: "06-1.jpg")
-    //cắt bỏ hết mấy cái "Frontend/src/..." bị thừa đi
     $filename = basename($row['thumbnail']);    
 
     // Nên đường dẫn đúng chỉ cần là: "uploads/ten_file.jpg"
