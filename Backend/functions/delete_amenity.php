@@ -26,7 +26,6 @@ if (isset($_GET['id'])) {
         $icon_url = $row['icon_url'];
 
         // Kiểm tra xem đây có phải là file ảnh lưu trên server không
-        // (Không xóa nếu là link online 'http...' hoặc class icon 'bi-wifi')
         if (!empty($icon_url) && strpos($icon_url, 'http') === false && strpos($icon_url, 'bi-') === false && strpos($icon_url, 'fa-') === false) {
             
             // Xác định đường dẫn file ảnh

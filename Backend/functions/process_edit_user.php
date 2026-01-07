@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/db_connect.php'; // Đảm bảo đường dẫn này đúng
+require_once '../config/db_connect.php'; 
 
 // Check quyền Admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {

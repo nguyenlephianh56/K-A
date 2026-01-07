@@ -161,7 +161,6 @@ $res_recent_list = $conn->query($sql_recent_list);
                     </thead>
                     <tbody>
                         <?php 
-                        // Câu lệnh SQL (Giữ nguyên logic owner_id bạn đã sửa đúng)
                         $sql_recent_list = "SELECT r.*, 
                                             COALESCE(u.full_name, 'Người dùng ẩn') as owner_name,
                                             (SELECT photo_url FROM room_photos rp WHERE rp.room_id = r.room_id LIMIT 1) as first_image
@@ -174,23 +173,20 @@ $res_recent_list = $conn->query($sql_recent_list);
 
                         if ($res_recent_list && $res_recent_list->num_rows > 0) {
                             while($recent = $res_recent_list->fetch_assoc()) {
-                                // 1. Xử lý Ảnh
+                                // Xử lý Ảnh
                                 $img_src = 'https://via.placeholder.com/60?text=No+Img';
                                 if (!empty($recent['first_image'])) {
                                     $img_src = (strpos($recent['first_image'], 'http') === 0) ? $recent['first_image'] : '../uploads/' . basename($recent['first_image']);
                                 }
 
-                                // 2. Xử lý Trạng thái
+                                // Xử lý Trạng thái
                                 $status_badge = match ($recent['status']) {
                                     'available' => '<span class="badge bg-success">Đang hiện</span>',
                                     'occupied' => '<span class="badge bg-secondary">Đã thuê</span>',
                                     'pending' => '<span class="badge bg-warning text-dark">Chờ duyệt</span>',
                                     default => '<span class="badge bg-light text-dark border">Ẩn</span>',
                                 };
-
-                                // ==========================================================
-                                // 3. XỬ LÝ THỜI GIAN (TIME AGO) - PHẦN BẠN CẦN
-                                // ==========================================================
+                                //XỬ LÝ THỜI GIAN (TIME AGO) - PHẦN BẠN CẦN
                                 $time_display = "Vừa xong"; // Mặc định
                                 if (!empty($recent['created_at'])) {
                                     $timestamp = strtotime($recent['created_at']);
@@ -212,7 +208,6 @@ $res_recent_list = $conn->query($sql_recent_list);
                                         $time_display = date('d/m/Y H:i', $timestamp);
                                     }
                                 }
-                                // ==========================================================
                         ?>
                             <tr>
                                 <td class="ps-3">

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'username'  => $user['username'],
                     'fullname'  => $user['full_name'],
                     'email'     => $user['email'],
-                    'role'      => $user['role'],
+                    'role'      => $user['role'],                 
                 ];
 
                 // Lưu thông báo Success
